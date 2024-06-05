@@ -1,0 +1,11 @@
+# write_nginx_http-flv_setting
+
+# nginx配置文件
+mv /root/nginx_http-flv.conf /usr/local/nginx/conf/nginx.conf
+
+# 自动启动nginx
+echo -e '
+import os
+if "nginx: worker process" not in "".join(os.popen("ps aux | grep nginx").readlines()):
+    os.system("/usr/local/nginx/sbin/nginx")
+' >> /root/.start.py

@@ -1,0 +1,14 @@
+# install_ssh
+
+# 安装依赖
+apt update
+apt install openssh-client openssh-server vim -y
+
+# 写入配置
+cat /root/write_ssh | bash
+
+# 启动应用
+/etc/init.d/ssh start
+
+# 收尾
+rm -rf /root/write_ssh

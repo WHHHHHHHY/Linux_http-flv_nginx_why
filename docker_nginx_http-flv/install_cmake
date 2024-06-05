@@ -1,0 +1,17 @@
+# install_cmake
+
+# 安装依赖
+apt update
+apt-get install g++ gcc build-essential libssl-dev -y
+
+# 解压在指定位置
+tar -zxvf cmake-3.28.3.tar.gz -C /usr/local/src/
+
+# 编译
+cd /usr/local/src/cmake-3.28.3/
+./bootstrap
+make
+make install
+
+# 收尾
+rm -rf /root/cmake-3.28.3.tar.gz

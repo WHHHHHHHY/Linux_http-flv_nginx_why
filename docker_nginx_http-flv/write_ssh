@@ -1,0 +1,24 @@
+# write_ssh
+
+# 允许root登录
+echo -e '\n
+Port 20000
+PermitRootLogin yes
+PasswordAuthentication yes
+' >> /etc/ssh/sshd_config
+
+# 自动启动应用脚本
+echo -e '
+import os
+ssh_result = os.popen("service ssh status")
+if "not running" in ssh_result.readlines()[0]:
+    os.system("service ssh start")
+' >> /root/.start.py
+
+# 将脚本加入bashrc
+echo -e '
+python3 /root/.start.py
+' >> /root/.bashrc
+
+# 设置root密码
+echo -e 'root:set_your_root_passwd' | chpasswd

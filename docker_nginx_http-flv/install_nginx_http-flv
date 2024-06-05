@@ -1,0 +1,23 @@
+# install_nginx_http-flv
+
+# 安装依赖
+apt update
+apt-get install libpcre3 libpcre3-dev openssl zlib1g zlib1g-dev -y
+
+# 解压文件
+tar -zxvf /root/nginx-1.24.0.tar.gz                 -C /usr/local/src/
+tar -zxvf /root/nginx-http-flv-module-1.2.11.tar.gz -C /usr/local/src/
+
+# 编译安装
+cd /usr/local/src/nginx-1.24.0/
+./configure --add-module=../nginx-http-flv-module-1.2.11/ --with-http_ssl_module 
+make
+make install
+
+# 配置文件及nginx自启
+cat /root/write_nginx_http-flv_setting | bash
+
+# 收尾
+rm -rf /root/nginx-1.24.0.tar.gz
+rm -rf /root/nginx-http-flv-module-1.2.11.tar.gz
+rm -rf /root/write_nginx_http-flv_setting
